@@ -10,7 +10,7 @@
 ## Tech Stack
 
 ### Frontend
-- Vue.js
+- Vue.js, typescript
 
 ### Backend
 - Node.js
