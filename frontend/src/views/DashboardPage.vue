@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import Card from '../components/Card.vue'
 
 const router = useRouter()
 const username = ref('')
@@ -31,22 +32,45 @@ function logout() {
       </div>
 
       <h1>Welcome, <span class="highlight">{{ username }}</span> 👋</h1>
-      <p class="subtext">You're now signed into LearnHub.</p>
+      <p class="subtext">You're now signed into LearnHub. Learning Vue Slots! 🎯</p>
 
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="info-icon courses-icon">📚</div>
-          <div>
-            <span class="info-label">My Courses</span>
-            <span class="info-value">0 enrolled</span>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="info-icon progress-icon">📊</div>
-          <div>
-            <span class="info-label">Progress</span>
-            <span class="info-value">Nothing yet</span>
-          </div>
+      <div class="slot-demo-section">
+        <h2 class="section-title">🎨 Default Slot Examples</h2>
+        <p class="section-description">
+          Below are Card components using <strong>default slots</strong>. 
+          Content is passed between the component tags and rendered inside the slot.
+        </p>
+
+        <div class="info-cards">
+          <!-- Card with custom content using default slot -->
+          <Card>
+            <div class="info-icon">📚</div>
+            <div>
+              <span class="info-label">My Courses</span>
+              <span class="info-value">0 enrolled</span>
+            </div>
+          </Card>
+
+          <!-- Another Card with different content -->
+          <Card>
+            <div class="info-icon">📊</div>
+            <div>
+              <span class="info-label">Progress</span>
+              <span class="info-value">Nothing yet</span>
+            </div>
+          </Card>
+
+          <!-- Card with rich content -->
+          <Card>
+            <div class="info-icon">🎯</div>
+            <div>
+              <span class="info-label">Learning Goal</span>
+              <span class="info-value">Master Vue Slots</span>
+            </div>
+          </Card>
+
+          <!-- Card showing fallback content (empty slot) -->
+          <Card />
         </div>
       </div>
 
@@ -147,12 +171,69 @@ function logout() {
   margin: 0 0 2rem;
 }
 
+.slot-demo-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  text-align: left;
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+  text-align: left;
+  background: var(--input-bg);
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 3px solid var(--accent-primary);
+}
+
+.section-description strong {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
 .info-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.info-value {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
 .info-card {
   display: flex;
   align-items: center;
